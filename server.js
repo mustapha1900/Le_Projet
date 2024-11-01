@@ -4,7 +4,7 @@ import compression  from 'compression'
 import helmet from 'helmet'
 import cors from 'cors'
 import './db/db.js'
-import { CreerUnEchange, GetTousLesEchanges, GetTousLesEchangesParIdUtilisateurs, SupprimerUnEchange,GetUtilisateurParId } from './model/lego.js'
+import { soumettreEchange, GetTousLesEchanges, GetTousLesEchangesParIdUtilisateurs,getBriques ,SupprimerUnEchange,GetUtilisateurParId } from './model/lego.js'
 import {engine} from 'express-handlebars';
 
 // creation du serveur
@@ -87,6 +87,33 @@ app.delete ('/api/supprimerEchange' , async (request,response) => {
         
     }
 });
+// Route de vincents
+//ajouter un nouvel echange
+app.post('/api/echanges', async (req, res) => {
+    const { nom_echange, briques, id_utilisateur } = req.body;
+    const id_echange = await soumettreEchange(nom_echange, briques, id_utilisateur);
+        
+    const total = await getEchangePrix(id_echange);
+
+    res.status(201).json({ id_echange, total });
+});
+
+//echange par id ecgange
+app.get('/api/echange', async (req, res) => {
+    const id_echange =  req.query.id_echange;
+    const echange = await getEchangeById(id_echange);
+    res.status(200).json(echange);
+});
+
+//tous les briques
+app.get('/api/briques', async (req, res) => {
+    const briques = await getBriques();
+    res.status(200).json(briques);
+});
+
+
+
+
 // Lancer le serveur
 
 app.listen(process.env.PORT);
