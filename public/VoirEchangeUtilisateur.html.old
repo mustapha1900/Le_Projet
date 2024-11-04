@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voir Echange Utilisateur</title>
-    <link rel="stylesheet" href="./css/VoirEchangeUtilisateur.css">
+    <!-- <link rel="stylesheet" href="./css/VoirEchangeUtilisateur.css">
     <script type="module" src="./js/VoirEchangeUtilisateur.js"></script>
+    <script type="module" src="./js/afficherEchangeSpecifique.js"></script> -->
 </head>
 <body>
     <header>
@@ -17,7 +18,7 @@
         </nav>
     </header>
     <main>
-    <table id="echange_table">
+    <!-- <table id="echange_table">
         <thead>
             <tr>
                 <th scope="col">Nom de l'Échange</th>
@@ -31,7 +32,7 @@
 
         </tbody>
     </table>
-    <a href="./creationEchange.html">Créer un Échange</a>
+    <a href="./CreerEchange.html">Créer un Échange</a> -->
     </main>
     <footer>
         &copy; 2024 Développé par Mustapha et Vincent. Tous droits réservés.

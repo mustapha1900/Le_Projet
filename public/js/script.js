@@ -1,7 +1,7 @@
 // Fonctions Front-End
 
 
-function afficherUnEchange(nom_echange,nom_utilisateur,prenom_utilisateur,id_utilisateur) {
+function afficherUnEchange(nom_echange,nom_utilisateur,prenom_utilisateur,id_echange) {
 
     const tbody = document.getElementById("tbody")
     const tr = document.createElement('tr')
@@ -13,8 +13,11 @@ function afficherUnEchange(nom_echange,nom_utilisateur,prenom_utilisateur,id_uti
    td_nomEchange.textContent = nom_echange
    td_nomUtilisateur.textContent=nom_utilisateur
    td_prenomUtilisateur.textContent = prenom_utilisateur
-   td_link.innerHTML = `<a href="/echange/${id_utilisateur}">Voir l'échange</a>`
-    
+  
+  const link = document.createElement('a');
+  link.href = `afficherEchangeSpecifique.html?id_echange=${id_echange}`;
+  link.textContent = "Voir l'échange";
+  td_link.appendChild(link);
     
     tr.append(td_nomEchange,td_nomUtilisateur,td_prenomUtilisateur, td_link)
     tbody.appendChild(tr)

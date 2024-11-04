@@ -4,7 +4,7 @@ import compression  from 'compression'
 import helmet from 'helmet'
 import cors from 'cors'
 import './db/db.js'
-import { soumettreEchange, GetTousLesEchanges, GetTousLesEchangesParIdUtilisateurs,getBriques ,SupprimerUnEchange,GetUtilisateurParId } from './model/lego.js'
+import { soumettreEchange,getEchangePrix, GetTousLesEchanges, GetTousLesEchangesParIdUtilisateurs,getBriques ,SupprimerUnEchange,GetUtilisateurParId, getEchangeById } from './model/lego.js'
 import {engine} from 'express-handlebars';
 
 // creation du serveur
@@ -22,6 +22,30 @@ app.use(helmet());
 app.use(cors());
 app.use(json());
 app.use(express.static('public'));
+
+//handleBars
+app.get('/' , (request,response)=> {
+    response.render('index' , {
+        titre : 'Page d\'accueil',
+        styles : ['/css/index.css'],
+        scripts: ['/js/script.js']
+    });
+})
+app.get('/VoirEchangeUtilisateur' , (request,response)=> {
+    response.render ('VoirEchangeUtilisateur', {
+        titre : 'Voir Les Echanges de l\'Utilisateur',
+        styles : ['/css/VoirEchangeUtilisateur.css'],
+        scripts : ['/js/VoirEchangeUtilisateur.js', '/js/afficherEchangeSpecifique.js']
+    });
+})
+app.get('/CreerEchange', (req, res) => {
+    res.render('CreerEchange', {
+        titre: 'Créer un Échange',
+        styles: ['/css/creerEchange.css','css/VoirEchangeUtilisateur.css'],
+        scripts: ['/js/afficherBriques.js']
+    });
+});
+
 
 // Programmation des routes
 app.get ('/api/echanges' , async (request,response)=> { 
@@ -87,7 +111,10 @@ app.delete ('/api/supprimerEchange' , async (request,response) => {
         
     }
 });
+
+
 // Route de vincents
+
 //ajouter un nouvel echange
 app.post('/api/echanges', async (req, res) => {
     const { nom_echange, briques, id_utilisateur } = req.body;
@@ -98,7 +125,7 @@ app.post('/api/echanges', async (req, res) => {
     res.status(201).json({ id_echange, total });
 });
 
-//echange par id ecgange
+//echange par id echange
 app.get('/api/echange', async (req, res) => {
     const id_echange =  req.query.id_echange;
     const echange = await getEchangeById(id_echange);

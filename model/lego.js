@@ -142,3 +142,15 @@ export async function getBriques(){
     const briques = await connexion.all('SELECT * FROM brique');
     return briques;
 }
+
+export async function getEchangePrix(id_echange) {
+    const prix = await connexion.get(
+        `SELECT SUM(brique.valeur * echange_brique.quantite) AS total
+        FROM echange_brique
+        JOIN brique ON echange_brique.id_brique = brique.id_brique
+        WHERE echange_brique.id_echange = ?`, 
+        [id_echange]
+    );
+
+    return prix.total; 
+}

@@ -13,12 +13,20 @@ function afficherEchangeParUtilisateurClient (nom_echange,prenom_utilisateur,nom
     td_nomEchange.textContent = nom_echange
    td_nomUtilisateur.textContent=nom_utilisateur
    td_prenomUtilisateur.textContent = prenom_utilisateur
-   td_link.innerHTML = `<a href="/echange/${id_utilisateur}">Voir l'échange</a>`
-  
+
+  const link = document.createElement('a');
+  link.href = `afficherEchangeSpecifique.html?id_echange=${id_echange}`;
+  link.textContent = "Voir l'échange";
+
+  td_link.appendChild(link);
+
+
    // creation du Boutton supprimer 
    const boutonSupprimer = document.createElement('button')
    boutonSupprimer.textContent = 'X'
    boutonSupprimer.classList.add('bouton-supprimer')
+
+
 //    boutonSupprimer.onclick(SupprimerUnEchange(id_echange, tr))
 boutonSupprimer.onclick = () => supprimerEchange(id_echange, tr);
 

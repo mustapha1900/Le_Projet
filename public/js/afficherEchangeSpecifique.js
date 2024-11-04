@@ -1,7 +1,9 @@
 async function afficherEchange(idEchange) {
     // Envoi de l’ID en tant que paramètre de requête dans l'URL
     const response = await fetch(`/api/echange?id_echange=${idEchange}`);
-    const echangeDetails = await response.json();
+    console.log("voici le id", idEchange)
+    const echangeDetails = await response.json()
+   // console.log("Données d'échange récupérées:", idEchange);
     const table = document.getElementById('brique-table');
     console.log(echangeDetails);
 
@@ -40,4 +42,19 @@ async function afficherEchange(idEchange) {
 }
 
 // Appel direct de la fonction pour afficher les détails de l'échange avec l'ID souhaité
-afficherEchange(1);  // Remplacez 1 par l'ID spécifique de l'échange que vous voulez afficher
+// afficherEchange(4);  // Remplacez 1 par l'ID spécifique de l'échange que vous voulez afficher
+
+function init() {
+    const urlParams = new URLSearchParams(window.location.search);
+     const idEchange = urlParams.get('id_echange');
+
+    if (idEchange) {
+        console.log("ID d'échange récupéré depuis l'URL:", idEchange);
+        afficherEchange(idEchange); // Appelle afficherEchange avec l'ID récupéré depuis l'URL
+    } else {
+        console.error("ID de l'échange manquant dans l'URL.");
+    }
+}
+
+// Appel de la fonction d'initialisation lorsque la page est chargée
+window.onload = init;
