@@ -15,7 +15,8 @@ function afficherUnEchange(nom_echange,nom_utilisateur,prenom_utilisateur,id_ech
    td_prenomUtilisateur.textContent = prenom_utilisateur
   
   const link = document.createElement('a');
-  link.href = `afficherEchangeSpecifique.html?id_echange=${id_echange}`;
+ 
+ link.href = `/afficherEchangeSpecifique?id_echange=${id_echange}`;
   link.textContent = "Voir l'échange";
   td_link.appendChild(link);
     
@@ -30,14 +31,15 @@ async function getEchangesList () {
 
     if (response.ok) {
        const echangesList = await response.json() ;
+      
        
        for (let i =0 ; i<echangesList.length ; i++) {
-        console.log(echangesList[i]);
+        // console.log(echangesList[i]);
          afficherUnEchange(
             echangesList[i].nom_echange ,
             echangesList[i].nom_utilisateur,
             echangesList[i].prenom_utilisateur,
-            echangesList[i].id_utilisateur)
+            echangesList[i].id_echange)
        } 
     }
    

@@ -1,4 +1,4 @@
-html {
+/* html {
     box-sizing: border-box;
 }
 
@@ -11,15 +11,15 @@ body {
     flex-direction: column;
     margin: 0;
     min-height: 100vh;
-}
+} */
 
 
 
-header, footer {
+/* header, footer {
     background-color: #cbcbcb;
     padding: 1rem;
     text-align: center;
-}
+} */
 
 h1 {
     margin: 0;
@@ -36,10 +36,18 @@ main {
 }
 
 #brique-table {
+    
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
 }
+/* #brique-table:hover {
+ background-color: red;
+} */
+#brique-table tbody tr:hover {
+    background-color: #e2e2e2;
+}
+
 
 #brique-table th, #brique-table td {
     border: 1px solid #ddd;

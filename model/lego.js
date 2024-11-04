@@ -6,7 +6,8 @@ export async function GetTousLesEchanges() {
     SELECT nom_echange, 
            nom AS nom_utilisateur,
            prenom AS prenom_utilisateur,  
-          echange.id_utilisateur 
+          echange.id_utilisateur,
+          echange.id_echange 
     FROM
     echange
     JOIN
@@ -123,7 +124,8 @@ export async function getEchangeById(id_echange) {
             b.nom AS nom_brique,
             b.valeur AS valeur,
             b.image AS image,
-            eb.quantite AS quantite_brique
+            eb.quantite AS quantite_brique,
+            e.id_echange
         FROM 
             echange e
         JOIN 

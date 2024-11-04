@@ -1,7 +1,7 @@
-async function afficherEchange(idEchange) {
+async function afficherEchange(id_echange) {
     // Envoi de l’ID en tant que paramètre de requête dans l'URL
-    const response = await fetch(`/api/echange?id_echange=${idEchange}`);
-    console.log("voici le id", idEchange)
+    const response = await fetch(`/api/echange?id_echange=${id_echange}`);
+    console.log("voici le id", id_echange)
     const echangeDetails = await response.json()
    // console.log("Données d'échange récupérées:", idEchange);
     const table = document.getElementById('brique-table');
@@ -42,7 +42,7 @@ async function afficherEchange(idEchange) {
 }
 
 // Appel direct de la fonction pour afficher les détails de l'échange avec l'ID souhaité
-// afficherEchange(4);  // Remplacez 1 par l'ID spécifique de l'échange que vous voulez afficher
+// afficherEchange();  // Remplacez 1 par l'ID spécifique de l'échange que vous voulez afficher
 
 function init() {
     const urlParams = new URLSearchParams(window.location.search);

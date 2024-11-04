@@ -28,7 +28,7 @@ app.get('/' , (request,response)=> {
     response.render('index' , {
         titre : 'Page d\'accueil',
         styles : ['/css/index.css'],
-        scripts: ['/js/script.js']
+        scripts: ['/js/script.js', '/js/afficherEchangeSpecifique.js']
     });
 })
 app.get('/VoirEchangeUtilisateur' , (request,response)=> {
@@ -45,6 +45,13 @@ app.get('/CreerEchange', (req, res) => {
         scripts: ['/js/afficherBriques.js']
     });
 });
+app.get ('/afficherEchangeSpecifique', (req,res)=> {
+    res.render ('afficherEchangeSpecifique' , {
+        titre : 'afficher un Echange Specifique',
+        styles : ['/css/index.css' , '/css/afficherEchangeSpecifique.css'],
+        scripts: ['/js/afficherEchangeSpecifique.js']
+    });
+})
 
 
 // Programmation des routes

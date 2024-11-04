@@ -15,7 +15,7 @@ function afficherEchangeParUtilisateurClient (nom_echange,prenom_utilisateur,nom
    td_prenomUtilisateur.textContent = prenom_utilisateur
 
   const link = document.createElement('a');
-  link.href = `afficherEchangeSpecifique.html?id_echange=${id_echange}`;
+  link.href = `/afficherEchangeSpecifique?id_echange=${id_echange}`;
   link.textContent = "Voir l'échange";
 
   td_link.appendChild(link);
@@ -38,7 +38,7 @@ boutonSupprimer.onclick = () => supprimerEchange(id_echange, tr);
 
 
 async function supprimerEchange(id_echange, tr) {
-    console.log("ID de l'échange à supprimer :", id_echange);
+    // console.log("ID de l'échange à supprimer :", id_echange);
     if (confirm('Êtes-vous sûr de vouloir supprimer cet échange ?')) {
         // Appel à l'API pour supprimer l'échange
         const response = await fetch(`/api/supprimerEchange?id_echange=${id_echange}`, {
