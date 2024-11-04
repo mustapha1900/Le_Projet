@@ -6,7 +6,7 @@
     font-family: "Oswald", Arial;
     /* font-size: 16px; */
 }
-form {
+/* form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -15,33 +15,42 @@ form {
     padding: 1rem;
     border: 1px solid #ddd;
     border-radius: 5px;
-}
+} */
 
 
 #brique-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 0, auto;
+    background-color: rgba(255, 255, 255, 0.4); /* Fond blanc semi-transparent */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
 
 }
 
 #brique-table th, #brique-table td {
-    border: 2px solid #ddd;
     padding: 8px;
-    max-width: 900px;
-    text-align: center;
+    text-align: left; 
 }
 
+#brique-table th{
+    font-weight: bold;
+    color: #333;
+    background-color: #cba546;
+}
+#brique-table tr:hover {
+    background-color: #F5F5DC;
+}
+
+
 #submit-button {
-    background-color: #4CAF50;
+      background-color: #e74c3c; /* Couleur rouge pour indiquer la suppression */
     color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
     border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
     cursor: pointer;
     width: 100%;
-    font-size: 16px; 
-    border-radius: 4px; 
+    margin-top: 10px;
 }
 
 
@@ -93,7 +102,7 @@ table {
 }
 
 img {
-    width: 90px;
+    width: 60px;
     height: auto;
 }
 input[type="number"] {

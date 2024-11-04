@@ -39,18 +39,25 @@ main {
     
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1rem;
+    background-color: rgba(255, 255, 255, 0.4); /* Fond blanc semi-transparent */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+#brique-table th{
+    font-weight: bold;
+    color: #333;
+    background-color: #cba546;
 }
 /* #brique-table:hover {
  background-color: red;
 } */
-#brique-table tbody tr:hover {
-    background-color: #e2e2e2;
+#brique-table tr:hover {
+    background-color: #F5F5DC;
 }
 
 
 #brique-table th, #brique-table td {
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     padding: 8px;
     text-align: center;
 }
