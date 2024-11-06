@@ -109,4 +109,14 @@ async function afficherEchange(detailEchange) {
 const id_echange = new URLSearchParams(window.location.search).get('id_echange');
 
 //appel de la fonction pour recupere depuis APi et ensuite afficher
-await getEchangeDetail(id_echange).then(afficherEchange);
+const echangeDetail = await getEchangeDetail(id_echange);
+console.log(echangeDetail);
+afficherEchange(echangeDetail.echange[0]);
+
+
+//affichager du total de léchange
+const total = document.getElementById('total');
+
+//Creation de la variable qui m,e permet de rendre le format du total uniforme avec 2 decimalsd.
+const totalFormatter = `${echangeDetail.total.toFixed(2)} $`;
+total.textContent = `Total: ${totalFormatter}`;

@@ -66,16 +66,7 @@ app.get ('/api/utilisateurId' , async (request,response)=> {
    response.status(200).json(utilisateur);
 });
 
-// app.get ('/api/echangeID' , async (request,response)=> {
-//     const id_echange = request.query.id_echange
-//     const echangeObj = await GetTousLesEchangesParId (id_echange);
-//     if (echangeObj) {
-//         response.status(200).json(echangeObj);
-//     }
-//     else {
-//         response.status(404).json('echange non trouvé') ;
-//     }
-// });
+
 
 app.get ('/api/echange/utilisateur' , async (request,response)=> {
     const id_utilisateur = request.query.id_utilisateur
@@ -127,16 +118,17 @@ app.post('/api/echanges', async (req, res) => {
     const { nom_echange, briques, id_utilisateur } = req.body;
     const id_echange = await soumettreEchange(nom_echange, briques, id_utilisateur);
         
-    const total = await getEchangePrix(id_echange);
+    
 
-    res.status(201).json({ id_echange, total });
+    res.status(201).json({ id_echange });
 });
 
 //echange par id echange
 app.get('/api/echange', async (req, res) => {
     const id_echange =  req.query.id_echange;
     const echange = await getEchangeById(id_echange);
-    res.status(200).json(echange);
+    const total = await getEchangePrix(id_echange);
+    res.status(200).json({echange: [echange], total: total });
 });
 
 //tous les briques
