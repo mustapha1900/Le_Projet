@@ -9,7 +9,23 @@
             </tr>
         </thead>
         <tbody id="tbody">
-
+            
+            {{#each SesEchanges}}
+                <tr>
+                    <td>{{this.nom_echange}}</td>
+                    <td>{{this.nom_utilisateur}}</td>
+                    <td>{{this.prenom_utilisateur}}</td>
+                    <td>
+                    <a href="/afficherEchangeSpecifique?id_echange={{this.id_echange}}">voir echange</a>
+                    </td>
+                    <td>
+                    <button class="bouton-supprimer" data-id="{{this.id_echange}}">X</button>
+                    </td>
+                    
+                </tr>
+            {{/each}}
+    
         </tbody>
     </table>
     <a id="btn_creerEchange" href="/CreerEchange">Créer un Échange</a>
+   

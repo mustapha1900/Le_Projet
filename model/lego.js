@@ -16,11 +16,6 @@ export async function GetTousLesEchanges() {
         const echanges = await connexion.all(sqlRequest)
     return echanges ; 
  }
-
-//  export async function GetTousLesEchangesParId (id_echange) {
-//    const echange = await connexion.get ('SELECT * FROM echange WHERE id_echange= ?;',[id_echange])
-//     return echange ; 
-//  }
  
 
 export async function GetTousLesEchangesParIdUtilisateurs(id_utilisateur) {
@@ -42,28 +37,6 @@ export async function GetTousLesEchangesParIdUtilisateurs(id_utilisateur) {
     const echanges = await connexion.all(sqlRequest, [id_utilisateur]);
     return echanges;
 }
-
-// export async function CreerUnEchange(id_utilisateur, nom_echange, briques) {
-   
-//     const resultat = await connexion.run(
-//         `INSERT INTO echange (id_utilisateur, nom_echange) VALUES (?, ?);`,
-//         [id_utilisateur, nom_echange]
-//     );
-
-//     // Récupère l'ID de l'échange créé
-//     const id_echangeCree = resultat.lastID;
-
-//     // Insèrer chaque brique associée à cet échange dans la table echange_brique
-//     for (const brique of briques) {
-//         await connexion.run(
-//             `INSERT INTO echange_brique (id_echange, id_brique, quantite) VALUES (?, ?, ?);`,
-//             [id_echangeCree, brique.id_brique, brique.quantite]
-//         );
-//     }
-
-//     return `Nouvel échange créé avec ID : ${id_echangeCree}`;
-// }
-
 
 export async function SupprimerUnEchange(id_echange) {
 
@@ -89,11 +62,7 @@ export async function SupprimerUnEchange(id_echange) {
     ` SELECT * FROM echange ;`);
     return echangesRestants;
 };
-export async function GetUtilisateurParId (id_utilisateur) {
-    const utilisateur = await connexion.get ('SELECT * FROM utilisateur WHERE id_utilisateur= ?;',[id_utilisateur])
-     return utilisateur ; 
-  }
-  
+
   // Fonctions de Vincents 
 
   export async function soumettreEchange(nom_echange, briques, id_utilisateur = 1) {

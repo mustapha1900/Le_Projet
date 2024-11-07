@@ -1,4 +1,4 @@
-<table id="echange_table" >
+{{!-- <table id="echange_table" >
             <thead >
             <tr>
                 <th scope="col">Échange</th>
@@ -10,4 +10,31 @@
             <tbody id="tbody">
             </tbody>
         </table>
+         <a id="btn_creerEchange" href="/CreerEchange">Créer un Échange</a> --}}
+    
+         <table id="echange_table" >
+            <thead >
+            <tr>
+                <th scope="col">Échange handl</th>
+                <th scope="col">Nom </th>
+                <th scope="col">Prenom </th>
+                <th scope="col">Voir votre Échange</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+                 {{#each MesEchanges}}
+                <tr>
+                    <td>{{this.nom_echange}}</td>
+                    <td>{{this.nom_utilisateur}}</td>
+                    <td>{{this.prenom_utilisateur}}</td>
+                    <td>
+                        <a href="/afficherEchangeSpecifique?id_echange={{this.id_echange}}">Voir Echange</a>
+                    </td>
+                </tr>
+                 {{/each}}
+            </tbody>
+        </table>
          <a id="btn_creerEchange" href="/CreerEchange">Créer un Échange</a>
+
+
+          
