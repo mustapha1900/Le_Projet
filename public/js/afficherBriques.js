@@ -95,5 +95,10 @@ async function soumettreEchange(event) {
         body: JSON.stringify(data)
     });
 
-
+    // afficher un message completer
+    alert('Echange soumis avec succès');
+    // On recharge la page pour voir les echanges
+    location.reload();
+    // On vide le formulaire
+    document.getElementById('form-echange').reset();
 }

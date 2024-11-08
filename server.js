@@ -128,6 +128,7 @@ app.get('/api/echange', async (req, res) => {
     const id_echange =  req.query.id_echange;
     const echange = await getEchangeById(id_echange);
     const total = await getEchangePrix(id_echange);
+    //Pas le choix de passer un tableau echange car on utilise la boucle foreach qui est reserver au tableau
     res.status(200).json({echange: [echange], total: total });
 });
 

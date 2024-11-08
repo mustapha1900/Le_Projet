@@ -113,7 +113,9 @@ export async function GetUtilisateurParId (id_utilisateur) {
         );
     }
 
+    
     return id_echange; 
+
 }
 
 export async function getEchangeById(id_echange) {
