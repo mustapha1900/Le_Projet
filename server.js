@@ -24,16 +24,19 @@ app.use(cors());
 app.use(json());
 app.use(express.static('public'));
 
-//handleBars
+//HandleBars Routes
+// 1 / Route de la page Index (page d'acceuil)
 app.get('/', async (request, response) => {
     const TousLesEchanges = await GetTousLesEchanges()
     response.render('index', {
         titre: 'Page d\'accueil',
         styles: ['/css/index.css'],
         scripts: ['/js/script.js', '/js/afficherEchangeSpecifique.js'],
-        MesEchanges: TousLesEchanges
+        TousLesEchanges: TousLesEchanges
     });
 })
+
+//2 / Route de la page 'Profil' (tous les echanges d'un utilisateur)
 app.get('/VoirEchangeUtilisateur', async (request, response) => {
     const EchangesUtilisateur = await GetTousLesEchangesParIdUtilisateurs(1);
 
@@ -44,6 +47,8 @@ app.get('/VoirEchangeUtilisateur', async (request, response) => {
         SesEchanges: EchangesUtilisateur
     });
 })
+
+//3 / Route de la page creer Echange
 app.get('/CreerEchange', (req, res) => {
     res.render('CreerEchange', {
         titre: 'Créer un Échange',
@@ -51,6 +56,8 @@ app.get('/CreerEchange', (req, res) => {
         scripts: ['/js/afficherBriques.js']
     });
 });
+
+//4 / Route de la page Afficher un Echange specifique
 app.get('/afficherEchangeSpecifique', (req, res) => {
     //    const echange = getEchangeById(request.query.id_echange)
     res.render('afficherEchangeSpecifique', {
@@ -62,7 +69,7 @@ app.get('/afficherEchangeSpecifique', (req, res) => {
 })
 
 
-// Programmation des routes
+// Programmation des routes Backend
 
 // Route qui recupere tous les echanges de tous les utilisateurs
 app.get('/api/echanges', async (request, response) => {
@@ -72,59 +79,38 @@ app.get('/api/echanges', async (request, response) => {
 
 // Route qui recupere tous les echange d'un utilisateur
 app.get('/api/echange/utilisateur', async (request, response) => {
-    const id_utilisateur = parseInt(request.query.id_utilisateur, 10);
-
-    // Vérification de la validité de `id_utilisateur`
-    if (valideID(id_utilisateur)) {
-        const echanges = await GetTousLesEchangesParIdUtilisateurs(id_utilisateur);
-
+    //Validation de l'ID utilisateur
+    if (valideID(parseInt(request.query.id_utilisateur))) {
+        const echanges = await GetTousLesEchangesParIdUtilisateurs(request.query.id_utilisateur);
+        //Verifier si le tableau des echanges n'est pas vide
         if (echanges.length === 0) {
-            response.status(404).end()
-                ; // Aucun échange trouvé        
-        } else {
-            response.status(200).json(echanges);
-            // Retourne les échanges trouvés
+            response.status(404).end();
         }
-    } else {
-        response.status(400).end(); // ID utilisateur invalide
+        else {
+            response.status(200).json(echanges);
+        }
+    }
+    else {
+        response.status(400).end();
     }
 });
 
 // route pour supprimer un echange
 app.delete('/api/supprimerEchange', async (request, response) => {
-    const id_echange = request.query.id_echange
-
-    const echangesRestants = await SupprimerUnEchange(id_echange)
-
-    if (echangesRestants === null) {
-        response.status(400).json('l echange que vous voulez supprimer est introuvable');
+    //validation de L'ID
+    if (valideID(parseInt(request.query.id_echange))) {
+        const echange = await SupprimerUnEchange(request.query.id_echange);
+        if (!echange === null) {
+            response.status(200).end();
+        }
+        else {
+            response.status(404).end();
+        }
     }
     else {
-        response.status(200).json({ message: 'echange supprimé avec succés', echangesRestants: echangesRestants });
-
+        response.status(400).end();
     }
 });
-
-// app.delete('/api/supprimerEchange', async (request, response) => {
-//     const id_echange = parseInt(request.query.id_echange, 10);
-
-//     // Valide que `id_echange` est un nombre valide
-//     if (!valideID(id_echange)) {
-//         return response.status(400).json({ error: 'ID échange invalide' });
-//     }
-
-//     // Tente de supprimer l'échange
-//     const suppressionReussie = await SupprimerUnEchange(id_echange);
-
-//     if (!suppressionReussie) {
-//         // Échange introuvable, renvoie 404 Not Found
-//         response.status(404).json({ error: 'L\'échange que vous voulez supprimer est introuvable' });
-//     } else {
-//         // Suppression réussie, renvoie confirmation
-//         response.status(200).json({ message: 'Échange supprimé avec succès' });
-//     }
-// });
-
 
 
 // Route de vincents
@@ -146,16 +132,14 @@ app.get('/api/echange', async (req, res) => {
     res.status(200).json(echange);
 });
 
-//tous les briques
+//toutes les briques
 app.get('/api/briques', async (req, res) => {
     const briques = await getBriques();
     res.status(200).json(briques);
 });
 
 
-
-
-// Lancer le serveur
+// Lancement du serveur
 
 app.listen(process.env.PORT);
 console.info('Mon serveur vient de démarrer');
