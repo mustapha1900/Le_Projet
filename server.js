@@ -1,3 +1,4 @@
+// Import des modules et des dépendances
 import 'dotenv/config'
 import express, { json, request, response } from 'express'
 import compression from 'compression'
@@ -12,7 +13,7 @@ import { engine } from 'express-handlebars';
 
 const app = express();
 
-//Ajout des engins
+//Ajout des engins des template Handlebars
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 
@@ -52,16 +53,14 @@ app.get('/VoirEchangeUtilisateur', async (request, response) => {
 app.get('/CreerEchange', (req, res) => {
     res.render('CreerEchange', {
         titre: 'Créer un Échange',
-        styles: ['/css/creerEchange.css', 'css/VoirEchangeUtilisateur.css'],
+        styles: ['/css/creerEchange.css'],
         scripts: ['/js/afficherBriques.js']
     });
 });
 
 //4 / Route de la page Afficher un Echange specifique
 app.get('/afficherEchangeSpecifique', (req, res) => {
-    //    const echange = getEchangeById(request.query.id_echange)
     res.render('afficherEchangeSpecifique', {
-        // echange : echange,
         titre: 'afficher un Echange Specifique',
         styles: ['/css/index.css', '/css/afficherEchangeSpecifique.css'],
         scripts: ['/js/afficherEchangeSpecifique.js']
@@ -69,15 +68,15 @@ app.get('/afficherEchangeSpecifique', (req, res) => {
 })
 
 
-// Programmation des routes Backend
+// Routes API (Backend)
 
-// Route qui recupere tous les echanges de tous les utilisateurs
+// Route API pour récupérer tous les échanges de tous les utilisateurs
 app.get('/api/echanges', async (request, response) => {
     const echanges = await GetTousLesEchanges();
     response.status(200).json(echanges);
 });
 
-// Route qui recupere tous les echange d'un utilisateur
+// Route API pour récupérer tous les échanges d'un utilisateur spécifique
 app.get('/api/echange/utilisateur', async (request, response) => {
     //Validation de l'ID utilisateur
     if (valideID(parseInt(request.query.id_utilisateur))) {
@@ -95,7 +94,7 @@ app.get('/api/echange/utilisateur', async (request, response) => {
     }
 });
 
-// route pour supprimer un echange
+// Route API pour supprimer un échange spécifique
 app.delete('/api/supprimerEchange', async (request, response) => {
     //validation de L'ID
     if (valideID(parseInt(request.query.id_echange))) {
@@ -113,9 +112,7 @@ app.delete('/api/supprimerEchange', async (request, response) => {
 });
 
 
-// Route de vincents
-
-//ajouter un nouvel echange
+// Route API pour ajouter un nouvel échange
 app.post('/api/echanges', async (req, res) => {
     const { nom_echange, briques, id_utilisateur } = req.body;
     const id_echange = await soumettreEchange(nom_echange, briques, id_utilisateur);
@@ -125,14 +122,14 @@ app.post('/api/echanges', async (req, res) => {
     res.status(201).json({ id_echange, total });
 });
 
-//echange par id echange
+// Route API pour récupérer un échange spécifique par ID
 app.get('/api/echange', async (req, res) => {
     const id_echange = req.query.id_echange;
     const echange = await getEchangeById(id_echange);
     res.status(200).json(echange);
 });
 
-//toutes les briques
+// Route API pour récupérer toutes les briques
 app.get('/api/briques', async (req, res) => {
     const briques = await getBriques();
     res.status(200).json(briques);

@@ -1,4 +1,4 @@
-
+// Fonction pour attacher l'événement de suppression à chaque bouton "Supprimer"
 function ajouterEvenementSupprimer(id_echange, tr) {
     const boutons = document.querySelectorAll('.bouton-supprimer');
     for (let bouton of boutons) {
@@ -9,8 +9,9 @@ function ajouterEvenementSupprimer(id_echange, tr) {
         });
     }
 }
-async function supprimerEchange(id_echange, tr) {
 
+// Fonction pour supprimer un échange spécifique côté serveur et dans le DOM
+async function supprimerEchange(id_echange, tr) {
     const response = await fetch(`/api/supprimerEchange?id_echange=${id_echange}`, {
         method: 'DELETE'
     });
@@ -18,5 +19,5 @@ async function supprimerEchange(id_echange, tr) {
         tr.remove();
     }
 }
-
+// Appel de la fonction pour attacher les événements de suppression aux boutons
 ajouterEvenementSupprimer();
