@@ -1,28 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Protest+Riot&display=swap');
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Oswald", Arial;
+    background-image: url('../assets/background5.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #333;
+    background-attachment: fixed;
+   
+}
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+    margin: 0 auto;
+    padding: 1rem;
+}
+header,
+footer {
+    padding: 1rem;
+    text-align: center;
+    color: white;
+
+}
+a {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #C0392B;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+a:hover {
+    background-color: #cba546;
+    transition: background-color 0.3s ease;
+}
+
+#title {
+    display: inline-block;
+    background-color: #C0392B;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 300;
+}
+#title,
+#profil {
+    display: inline-block;
+    margin: 0;
+}
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+
+}
+#github {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+#github:hover {
+    background-color: #cba546;
+}
 #contenant {
     gap: 1rem;
     max-width: 110rem;
     margin: 0 auto;
     padding: 1rem;
     font-family: "Oswald", Arial;
-    /* font-size: 16px; */
+
 }
-/* form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 75rem;
-    margin: 0 auto;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-} */
 
 
 #brique-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: rgba(255, 255, 255, 0.4); /* Fond blanc semi-transparent */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.7); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
     border-radius: 8px;
 
 }
@@ -43,7 +116,7 @@
 
 
 #submit-button {
-      background-color: #e74c3c; /* Couleur rouge pour indiquer la suppression */
+      background-color: #e74c3c; 
     color: white;
     border: none;
     padding: 8px 12px;
@@ -53,47 +126,20 @@
     margin-top: 10px;
 }
 
-
-
-/* html {
-    box-sizing: border-box;
-    /*empecher le scroll de droite a gauche!!!
-    overflow-x: hidden;
-} 
-/* 
-*,*::before, *::after {
-    box-sizing: inherit;
-} */
-
-/* body {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    min-height: 100vh;
-} */
-
-
-
-/* header, footer {
-    background-color: #cbcbcb;
-    padding: 1rem;
+#title_table {
+    background-color: #C0392B;
     text-align: center;
-} */
+    font-weight: 300;
+    border-radius: 4px;
+    color: white;
+    padding: 4px;
+    border: solid white;
 
-/* h1 {
-    margin: 0;
-    width: 100vw;
-} */
-
-/* main {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    flex: 1;
-     /* max-width: 25rem; 
-    margin: 0 auto;
-    padding: 1rem;
-} */
+}
+#title_table:hover {
+    background-color: #cba546;
+    transition: background-color 0.3s ease;
+}
 
 table {
     width: 100%;
@@ -113,3 +159,25 @@ input[type="text"]{
     width: 350px;
     padding: 5px;
 }
+#erreur-nom-echange{
+    color: #C0392B;
+    text-align: center;
+    background-color: #F5F5DC;
+}
+#submit-button{
+ 
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: background-color 0.3s ease;
+}
+    
+#submit-button:hover {
+        background-color:#cba546 ;
+        text-align: center;
+    
+    }
