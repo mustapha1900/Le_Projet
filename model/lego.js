@@ -19,24 +19,22 @@ export async function GetTousLesEchanges() {
 
 // Fonction pour récupérer tous les échanges d'un utilisateur spécifique par son ID
 export async function GetTousLesEchangesParIdUtilisateurs(id_utilisateur) {
-    const sqlRequest = `
+    const echanges = await connexion.all(`
     SELECT 
            id_echange,
            nom_echange, 
            nom AS nom_utilisateur,
-           prenom AS prenom_utilisateur,  
-           echange.id_utilisateur 
+           prenom AS prenom_utilisateur  
     FROM
         echange
     JOIN
         utilisateur ON echange.id_utilisateur = utilisateur.id_utilisateur
     WHERE 
-        echange.id_utilisateur = ?
-    ;`;
+        echange.id_utilisateur = ?;`,[id_utilisateur]);
 
-    const echanges = await connexion.all(sqlRequest, [id_utilisateur]);
     return echanges;
 }
+
 // Fonction pour supprimer un échange spécifique par son ID
 export async function SupprimerUnEchange(id_echange) {
 

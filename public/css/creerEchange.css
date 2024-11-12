@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Protest+Riot&display=swap');
+
 html {
     box-sizing: border-box;
 }
@@ -13,12 +15,13 @@ body {
     margin: 0;
     min-height: 100vh;
     font-family: "Oswald", Arial;
-    background-image: url('../assets/background7.jpg');
+    background-image: url('../assets/background5.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     color: #333;
-    font-weight: 400;
+    background-attachment: fixed;
+   
 }
 main {
     display: flex;
@@ -84,13 +87,15 @@ a:hover {
     margin: 0 auto;
     padding: 1rem;
     font-family: "Oswald", Arial;
+
 }
+
 
 #brique-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: rgba(255, 255, 255, 0.4); 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.7); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
     border-radius: 8px;
 
 }
@@ -121,6 +126,20 @@ a:hover {
     margin-top: 10px;
 }
 
+#title_table {
+    background-color: #C0392B;
+    text-align: center;
+    font-weight: 300;
+    border-radius: 4px;
+    color: white;
+    padding: 4px;
+    border: solid white;
+
+}
+#title_table:hover {
+    background-color: #cba546;
+    transition: background-color 0.3s ease;
+}
 
 table {
     width: 100%;
@@ -140,3 +159,25 @@ input[type="text"]{
     width: 350px;
     padding: 5px;
 }
+#erreur-nom-echange{
+    color: #C0392B;
+    text-align: center;
+    background-color: #F5F5DC;
+}
+#submit-button{
+ 
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: background-color 0.3s ease;
+}
+    
+#submit-button:hover {
+        background-color:#cba546 ;
+        text-align: center;
+    
+    }

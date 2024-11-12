@@ -1,9 +1,20 @@
- <table id="brique-table">
-
+<table id="brique-table">
+        <thead>
             <tr>
                 <th scope="col">Nom de la Brique</th>
                 <th scope="col">Image</th>
                 <th scope="col">Valeur</th>
                 <th scope="col">Quantité</th>
             </tr>
-        </table>
+        </thead>
+        <tbody>
+            {{#each echange}}
+            <tr>
+                <td>{{this.nom_brique}}</td>
+                <td><img src="../assets/{{this.image}}" alt="{{this.nom_brique}}"></td>
+                <td>{{this.valeur}} $/brique</td>
+                <td>{{this.quantite_brique}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
