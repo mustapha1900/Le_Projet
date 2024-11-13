@@ -15,7 +15,7 @@ body {
     margin: 0;
     min-height: 100vh;
     font-family: "Oswald", Arial;
-    background-image: url('../assets/background5.jpg');
+    background-image: url('../assets/background9.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -181,3 +181,7 @@ input[type="text"]{
         text-align: center;
     
     }
+
+#nom-echange{
+    color: black;
+}

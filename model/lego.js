@@ -2,7 +2,7 @@ import { connexion } from "../db/db.js";
 
 // Fonction pour récupérer tous les échanges de tous les utilisateurs 
 export async function GetTousLesEchanges() {
-    const sqlRequest = `
+    const echanges = await connexion.all(`
     SELECT nom_echange, 
            nom AS nom_utilisateur,
            prenom AS prenom_utilisateur,  
@@ -12,8 +12,8 @@ export async function GetTousLesEchanges() {
     echange
     JOIN
         utilisateur ON echange.id_utilisateur = utilisateur.id_utilisateur
-    ;`
-    const echanges = await connexion.all(sqlRequest)
+    ;`)
+    // const echanges = await connexion.all(sqlRequest)
     return echanges;
 }
 
