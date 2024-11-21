@@ -1,9 +1,25 @@
- <header>
+ {{!-- <header>
         <nav>
             <div class="header-container">
             <h1 id="title" ><a href="/">Bienvenue au jeu Lego</a></h1>
             <a id="profil" href="/VoirEchangeUtilisateur">Profil</a>
-
+            <a id="inscription" href="/inscription">Inscription</a>
+            <a id="connexion" href="/connexion">Connexion</a>
             </div>
         </nav>
-    </header>
+    </header> --}}
+
+    <header>
+    <nav>
+        <div class="header-container">
+            <h1 id="title"><a href="/">Bienvenue au jeu Lego</a></h1>
+            {{#if utilisateurConnecte}}
+                <a id="profil" href="/VoirEchangeUtilisateur">Profil</a>
+                <a id="btn_deconnexion" href="/">Déconnexion</a>
+            {{else}}
+                <a id="inscription" href="/inscription">Inscription</a>
+                <a id="connexion" href="/connexion">Connexion</a>
+            {{/if}}
+        </div>
+    </nav>
+</header>

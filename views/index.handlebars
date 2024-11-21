@@ -21,4 +21,9 @@
         {{/each}}
     </tbody>
 </table>
+{{!-- <a id="btn_creerEchange" href="/CreerEchange">Créer un Échange</a> --}}
+{{#if utilisateurConnecte}}
 <a id="btn_creerEchange" href="/CreerEchange">Créer un Échange</a>
+{{else}}
+<p id="btn_creerEchange_message">Veuillez vous connecter pour créer un échange.</p>
+{{/if}}

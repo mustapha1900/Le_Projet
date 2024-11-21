@@ -10,3 +10,9 @@ export const validateTexte = (texte) =>
     texte &&
     texte.length >= 5 &&
     texte.length <= 200;
+
+export const validateCourriel = (courriel) => 
+    true ;
+
+export const validateMotdePasse = (mot_de_passe)=>
+    true ;

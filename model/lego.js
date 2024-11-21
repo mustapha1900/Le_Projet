@@ -1,6 +1,6 @@
 import { connexion } from "../db/db.js";
 
-// Fonction pour récupérer tous les échanges de tous les utilisateurs 
+// Fonction pour récupérer tous les échanges de tous les utilisateurs avec la requete SQL
 export async function GetTousLesEchanges() {
     const echanges = await connexion.all(`
     SELECT nom_echange, 
@@ -13,7 +13,6 @@ export async function GetTousLesEchanges() {
     JOIN
         utilisateur ON echange.id_utilisateur = utilisateur.id_utilisateur
     ;`)
-    // const echanges = await connexion.all(sqlRequest)
     return echanges;
 }
 
@@ -62,7 +61,6 @@ export async function SupprimerUnEchange(id_echange) {
 };
 
 // Fonction pour soumettre un nouvel échange avec ses briques associées
-
 export async function soumettreEchange(nom_echange, briques, id_utilisateur = 1) {
     const result = await connexion.run(
         'INSERT INTO echange (nom_echange, id_utilisateur) VALUES (?, ?)',

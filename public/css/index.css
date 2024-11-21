@@ -132,6 +132,13 @@ a:hover {
     transition: background-color 0.3s ease;
 }
 
-#btn_creerEchange {
+#btn_creerEchange{
+    text-align: center;
+}
+#btn_creerEchange_message 
+{
+    color: #C0392B;
+    text-align: center;
+    background-color: #F5F5DC;
     text-align: center;
 }
